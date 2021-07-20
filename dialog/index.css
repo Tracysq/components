@@ -32,3 +32,9 @@
 .s-dialog-footer button {
   margin-left: 10px;
 }
+
+/*-----------------------*/
+
+.user-dialog {
+  z-index: 100;
+}
