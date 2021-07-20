@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <input id="x" type="text">
+
+  <script>
+    class Suggestion{
+      constructor(options){
+        this.options = options
+        this.$input = $(options.input)
+        this.$ol = $('<ol></ol>')
+        this.$input.after(this.$ol)
+        this.$loading = $('<div class="s-suggestion-loading"></div>')
+        this.$loading.html(this.options.loadingTemplate)
+        this.bindEvents()
+      }
+      bindEvents(){
+        this.$input.on('input', (e) => {
+          this.options.search(e.currentTarget.value, (array) => {
+            console.log(array)
+            this.$ol.empty()
+            array.forEach(text => {
+              this.$ol.append($('<li></li>').text(text))
+            })
+          })
+        })
+      }
+    }
+
+    var s = new Suggestion({
+      input: 'input',
+      search: function (text, callback) {
+        let array = []
+        for(let i = 0; i< 5; i++){
+          var n = parseInt(Math.random() * 100, 10)
+          array.push(text + n)
+        }
+        setTimeout(() => callback(array), 200)
+      },
+      loadingTemplate: '加载中...'
+    })
+  </script>
+</body>
+</html>
