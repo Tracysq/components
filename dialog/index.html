@@ -1,0 +1,69 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <button id="btn">点击</button>
+
+  <script>
+    class Dialog{
+      constructor(options){
+        this.options = options
+        this.init()
+      }
+      init(){
+        let {className, title, content, buttons} = this.options
+        let $buttons = buttons.map((buttonOption) => {
+          let $b = $('<button></button>')
+          $b.text(buttonOption.text)
+          $b.on('click', buttonOption.action)
+          return $b
+        })
+        var template = `
+          <div class="s-dialog">
+            <div class="s-dialog-wrapper">
+              <header class="s-dialog-header">${title}</header>
+              <main class="s-dialog-main">${content}</main>
+              <footer class="s-dialog-footer"></footer>
+            </div>
+          </div>
+        `
+        var $dialog = $(template)
+        $dialog.find('footer').append($buttons)
+        $dialog.addClass(className)
+        this.$dialog = $dialog
+      }
+      open(){
+        this.$dialog.appendTo('body')
+      }
+      close(){
+        this.$dialog.detach()
+      }
+    }
+
+    btn.onclick = function () {
+      var dialog = new Dialog({
+        className: 'user-dialog',
+        title: '标题',
+        content: '<b>欢迎</b>',
+        buttons: [
+          {text: '确定', action: function(){
+            setTimeout(() => {
+              dialog.close()
+            }, 3000)
+          }},
+          {text: '取消', action: function(){
+            dialog.close()
+          }}
+        ]
+      })
+      dialog.open()
+    }
+  </script>
+</body>
+</html>
