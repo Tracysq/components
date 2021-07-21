@@ -1,0 +1,43 @@
+.s-suggestion {
+  position: relative;
+  border: 1px solid red;
+  display: inline-block;
+}
+
+.s-suggestion-loading {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+}
+
+.s-suggestion.loading .s-suggestion-loading {
+  display: block;
+}
+
+.s-suggestion-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  border: 1px solid green;
+  list-style: none;
+  width: 100%;  
+}
+
+.s-suggestion-list li {
+  cursor: pointer;
+}
+
+.s-suggestion.loading .s-suggestion-list {
+  display: none;
+}
+
+.s-suggestion-empty {
+  display: none;
+}
+
+.s-suggestion.empty .s-suggestion-empty {
+  display: block;
+}
