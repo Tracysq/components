@@ -1,0 +1,30 @@
+.s-slides {
+  position: relative;
+  overflow: hidden;
+}
+
+.s-slides ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  transition: transform 0.3s;
+}
+
+.s-slides ol>li img {
+  vertical-align: top;
+}
+
+.s-slides-prev {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.s-slides-next {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
